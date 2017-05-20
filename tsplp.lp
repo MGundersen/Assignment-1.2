@@ -197,6 +197,7 @@ Subject To
    + road_(8,_19) + road_(9,_19) + road_(10,_19) + road_(11,_19)
    + road_(12,_19) + road_(13,_19) + road_(14,_19) + road_(15,_19)
    + road_(16,_19) + road_(17,_19) + road_(18,_19) = 2
+ R20: road_(3,_10) + road_(3,_11) + road_(10,_11) <= 2
 Bounds
  road_(0,_1) <= 1
  road_(0,_2) <= 1
@@ -388,41 +389,4 @@ Bounds
  road_(17,_18) <= 1
  road_(17,_19) <= 1
  road_(18,_19) <= 1
-Generals
- road_(0,_1) road_(0,_2) road_(0,_3) road_(0,_4) road_(0,_5) road_(0,_6)
- road_(0,_7) road_(0,_8) road_(0,_9) road_(0,_10) road_(0,_11) road_(0,_12)
- road_(0,_13) road_(0,_14) road_(0,_15) road_(0,_16) road_(0,_17)
- road_(0,_18) road_(0,_19) road_(1,_2) road_(1,_3) road_(1,_4) road_(1,_5)
- road_(1,_6) road_(1,_7) road_(1,_8) road_(1,_9) road_(1,_10) road_(1,_11)
- road_(1,_12) road_(1,_13) road_(1,_14) road_(1,_15) road_(1,_16)
- road_(1,_17) road_(1,_18) road_(1,_19) road_(2,_3) road_(2,_4) road_(2,_5)
- road_(2,_6) road_(2,_7) road_(2,_8) road_(2,_9) road_(2,_10) road_(2,_11)
- road_(2,_12) road_(2,_13) road_(2,_14) road_(2,_15) road_(2,_16)
- road_(2,_17) road_(2,_18) road_(2,_19) road_(3,_4) road_(3,_5) road_(3,_6)
- road_(3,_7) road_(3,_8) road_(3,_9) road_(3,_10) road_(3,_11) road_(3,_12)
- road_(3,_13) road_(3,_14) road_(3,_15) road_(3,_16) road_(3,_17)
- road_(3,_18) road_(3,_19) road_(4,_5) road_(4,_6) road_(4,_7) road_(4,_8)
- road_(4,_9) road_(4,_10) road_(4,_11) road_(4,_12) road_(4,_13)
- road_(4,_14) road_(4,_15) road_(4,_16) road_(4,_17) road_(4,_18)
- road_(4,_19) road_(5,_6) road_(5,_7) road_(5,_8) road_(5,_9) road_(5,_10)
- road_(5,_11) road_(5,_12) road_(5,_13) road_(5,_14) road_(5,_15)
- road_(5,_16) road_(5,_17) road_(5,_18) road_(5,_19) road_(6,_7)
- road_(6,_8) road_(6,_9) road_(6,_10) road_(6,_11) road_(6,_12)
- road_(6,_13) road_(6,_14) road_(6,_15) road_(6,_16) road_(6,_17)
- road_(6,_18) road_(6,_19) road_(7,_8) road_(7,_9) road_(7,_10)
- road_(7,_11) road_(7,_12) road_(7,_13) road_(7,_14) road_(7,_15)
- road_(7,_16) road_(7,_17) road_(7,_18) road_(7,_19) road_(8,_9)
- road_(8,_10) road_(8,_11) road_(8,_12) road_(8,_13) road_(8,_14)
- road_(8,_15) road_(8,_16) road_(8,_17) road_(8,_18) road_(8,_19)
- road_(9,_10) road_(9,_11) road_(9,_12) road_(9,_13) road_(9,_14)
- road_(9,_15) road_(9,_16) road_(9,_17) road_(9,_18) road_(9,_19)
- road_(10,_11) road_(10,_12) road_(10,_13) road_(10,_14) road_(10,_15)
- road_(10,_16) road_(10,_17) road_(10,_18) road_(10,_19) road_(11,_12)
- road_(11,_13) road_(11,_14) road_(11,_15) road_(11,_16) road_(11,_17)
- road_(11,_18) road_(11,_19) road_(12,_13) road_(12,_14) road_(12,_15)
- road_(12,_16) road_(12,_17) road_(12,_18) road_(12,_19) road_(13,_14)
- road_(13,_15) road_(13,_16) road_(13,_17) road_(13,_18) road_(13,_19)
- road_(14,_15) road_(14,_16) road_(14,_17) road_(14,_18) road_(14,_19)
- road_(15,_16) road_(15,_17) road_(15,_18) road_(15,_19) road_(16,_17)
- road_(16,_18) road_(16,_19) road_(17,_18) road_(17,_19) road_(18,_19)
 End
