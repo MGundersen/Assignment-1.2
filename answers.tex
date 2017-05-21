@@ -81,7 +81,7 @@ ID~\idnr}
 %%% Settings for the Student
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\author{Mikkel Pilegaard(mipil15) & Mathias Holst Gundersen(mgund15)}
+\author{Mikkel Pilegaard(mipil15) \& Mathias Holst Gundersen(mgund15)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -108,9 +108,9 @@ def solve_tsp(points, subtours = []):
     m.setParam(GRB.param.Method, 0)
     m.setParam(GRB.param.MIPGap,1e-7)
 
-    ######### BEGIN: Write here your model for Task 1   
+    \#\#\#\#\#\#\#\#\# BEGIN: Write here your model for Task 1   
 
-    # Decision Variables
+    \# Decision Variables
     tmp = []
     
     roads = {}
@@ -119,20 +119,20 @@ def solve_tsp(points, subtours = []):
         roads[(a,b)] = road
         tmp += [road * distance(points[a], points[b])]
 
-    # Set the objective function
+    \# Set the objective function
     m.setObjective( quicksum(tmp), GRB.MINIMIZE )
       
-    # Constraint to make sure we have exactly 2 roads for each city
+    \# Constraint to make sure we have exactly 2 roads for each city
     for i in V:
         m.addConstr( quicksum( roads[(a,b)] for (a,b) in delta([i], V) ), GRB.EQUAL, 2, name="c1_"+str(i)+str((a,b)))
     
-    # Constraint to remove subtours
+    \# Constraint to remove subtours
     for i in subtours:
         if len(i) < 2:
             continue
         m.addConstr( quicksum( roads[(a,b)] for (a,b) in Edges(i)) <= len(i) - 1 )
     
-    ######### END
+    \#\#\#\#\#\#\#\#\# END
     
     m.optimize()
     m.write("tsplp.lp")
@@ -140,17 +140,14 @@ def solve_tsp(points, subtours = []):
     if m.status == GRB.status.OPTIMAL:
         print('The optimal objective is %g' % m.objVal)
         m.write("tsplp.sol") # write the solution
-        #for (a,b) in E:
-        #    if roads[(a,b)].x == 1.0:
-        #        plt.plot([points[a].real, points[b].real],[points[b].imag, points[b].imag], "k-")
         return {(i,j) : roads[(i,j)].x for i,j in E}
     else:
         print "Something wrong in solve_tsplp"
         exit(0)
 
-# Creating the subset of cities
+\# Creating the subset of cities
 sets = list(powerset(range(len(ran_points))))
-# The first element of the list is the empty set and the last element is the full set, hence we remove them.
+\# The first element of the list is the empty set and the last element is the full set, hence we remove them.
 sets = sets[1:(len(sets)-1)]
 solve_tsp(ran_points, sets) Don't solve
 \end{lstlisting}
