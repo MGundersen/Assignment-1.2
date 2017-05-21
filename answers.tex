@@ -94,7 +94,7 @@ ID~\idnr}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The first code snippets are the implementation of the traveler sales problem. This is followed up by 3 code snippets, which are used by the solver.
+The first code snippet is the model implementation of the DFJ formulation. This is followed up by 3 code snippets, which are used by the solver.
 
 \begin{lstlisting}
 def solve_tsp(points, subtours = []):
@@ -191,8 +191,7 @@ def delta(v, V):
 \section*{Task 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-When removing the integrality constraint and the subtour elimination constraint, the solution contains variables which are not all integers. This means that the matrix is cannot be TUM, and since the solutions are not all integer, we do not have a complete tour.
+When removing the integrality constraint and the subtour elimination constraint, the solution contains variables which are not all integers. When the resulting route has non-integer values, we do not have a complete tour, and this also means that the matrix cannot be TUM. \textbf{Han sagde noget i timen med at Andreas' svar ikke var 'nok', så måske der skal mere eller anden forklaring til?}
 
 And since the subtour elimination constraint has been removed, if just 2 or more points are grouped up, we will expect a subtour.
 
@@ -233,12 +232,16 @@ plot_situation(ran_points, tsplp1)
 \end{center}
 \end{figure}
 
+\textbf{"Show your last solution and comment on it."}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section*{Task 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When looking at the separation problem in the assignment, we can see that it is not a linear problem, since the variables $z_i$ and $z_j$ are multiplied together. We want to rewrite this to a linear problem, and we do so by observing that both variables are binary, and when multiplied together, they act as the logical condition AND. The AND condition can be rewritten as a linear condition. This is done for our SEP problem:
 
 Objective function:
 $$ \max \sum_{e=ij\in E':i < j} x^*_e y_e - \sum_{i \in V' \setminus \{k\}} z_i $$
@@ -351,6 +354,8 @@ def cutting_plane_alg(points):
 cutting_plane_alg(dantzig42)
 \end{lstlisting}
 
+\textbf{Mangler at indsætte plot af sidste løsning, samt hvor mange iterationer det tog.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -358,7 +363,7 @@ cutting_plane_alg(dantzig42)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Tour length: 2652,2
+\textbf{Tour length:} 2652,2
 
 \end{document}
           
