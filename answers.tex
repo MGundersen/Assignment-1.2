@@ -219,16 +219,27 @@ We see that the final tour is in fact a tour, as there is no subtours.
 \newpage
 \section*{Task 4}
 
-When looking at the separation problem in the assignment, we can see that it is not a linear problem, since the variables $z_i$ and $z_j$ are multiplied together. We want to rewrite this to a linear problem, and we do so by observing that both variables are binary, and when multiplied together, they act as the logical condition AND. The AND condition can be rewritten as a linear condition. This is done for our SEP problem:
+When looking at the separation problem model given, we see that it is not a linear combination (and therefore not solvable by linear programming), due to the variables $z_i$ and $z_j$ being multiplied together. We rewrite this to a linear combination, by observing that both variables are binary, and when multiplied together, they act as the logical AND condition. The AND condition can be rewritten as a linear combination. This is done for our SEP problem using $y$ as the intermediate:
+
+Parameters:
+$$ k \in S $$
+$$ x^*_{ij} \in \mathbb{R} $$
+
+We are also given the modified graph $G' = \{V', E'\}$.
+
+Variables:
+$$ z \in \mathbb{B}^n $$
+$$ y_{ij} \in \mathbb{R} \quad \forall ij \in E' $$
 
 Objective function:
 $$ \max \sum_{e=ij\in E':i < j} x^*_e y_e - \sum_{i \in V' \setminus \{k\}} z_i $$
+
 Constraints:
 $$ z_k = 1 $$
 $$ y_{ij} \geq z_i + z_j - 1 \quad \forall ij \in E' $$
 $$ y_{ij} \leq z_i,z_j \quad \forall ij \in E' $$
 $$ y_{ij} \geq 0 \quad \forall ij \in E' $$
-$$ z \in \mathbb{B}^n $$
+
 
 
 \newpage
