@@ -82,7 +82,7 @@ University of Southern Denmark, Odense}
 \maketitle
 
 
-The first code snippet is the model implementation of the DFJ formulation. This is followed up by 3 code snippets, which are used by the solver.
+The first code snippet is the model implementation of the DFJ formulation. This is followed up by two code snippets, which are auxiliary methods.
 
 \begin{lstlisting}
 def solve_tsp(points, subtours = []):
@@ -140,7 +140,7 @@ sets = sets[1:(len(sets)-1)]
 solve_tsp(ran_points, sets) Don't solve
 \end{lstlisting}
 
-The following methods are implements the functions $E$ and $\delta$ from the model description respectively. Creates a list of edges from the set of vertices given. Creates an edges from every city to every other city, but only 1 edge between the same cities.
+The following methods implements the functions $E$ and $\delta$ from the model description respectively.
 
 \begin{lstlisting}
 def Edges(vertices):
@@ -150,8 +150,6 @@ def Edges(vertices):
     E = [(i,j) for i in vertices for j in vertices if i<j]
     return E
 \end{lstlisting}
-
-Finds the edges in the cut v in the set of vertices V.
 
 \begin{lstlisting}
 def delta(v, V):
@@ -166,9 +164,10 @@ def delta(v, V):
 \newpage
 \section*{Task 2}
 
-When removing the integrality constraint and the subtour elimination constraint, the solution contains variables which are not all integers. The result can be observed in figure \ref{fig:plot1}. When the resulting route has non-integer values, we do not have a complete tour, and this also means that the matrix cannot be TUM. \textbf{Han sagde noget i timen med at Andreas' svar ikke var 'nok', så måske der skal mere eller anden forklaring til?}
+When removing the integrality constraint and the subtour elimination constraint, the solution contains variables which are not all integers. The result can be observed in figure \ref{fig:plot1}. When the resulting route has non-integer values, we do not have a complete tour and this also means that the matrix cannot be TUM as the b column of the constraints are integer (= 2).
+% Man kan se i balance begrænsningen at det skal være lig med 2 og dermed b kollonen er 2
 
-And since the subtour elimination constraint has been removed, if just 2 or more points are grouped up, we will expect a subtour.
+And since the subtour elimination constraint has been removed, if just 2 or more points are grouped up, we will expect a subtour. This means that one can expect some roads that are semi-selected with a fractional value.
 
 \begin{figure}[htb]
 \centering
@@ -181,7 +180,8 @@ And since the subtour elimination constraint has been removed, if just 2 or more
 \newpage
 \section*{Task 3}
 
-We solved the relaxed version of the TSP problem and received this result seen in figure \ref{fig:plot1}. We visually inspect the solution, and choose the subtour [3,10,11], add it to the solvers parameters, solve the model, again and get the result seen in figure \ref{fig:plot2}; notice the slight change in the left part of the tour.
+We solved the relaxed version of the TSP problem and got the result seen in figure \ref{fig:plot1}. We visually inspect the solution and choose the subtour $\texttt{[3,10,11]}$, add this to the solvers parameters,
+ and solve the model again. We get the result seen in figure \ref{fig:plot2}; notice the slight change in the left part of the tour.
 
 \begin{figure}[htb]
 \centering
@@ -190,7 +190,7 @@ We solved the relaxed version of the TSP problem and received this result seen i
 \label{fig:plot2}
 \end{figure}
 
-We inspect the result again, find the subtour [3,6,10,11] and add it to our list of subtours, pass these to the solver and solve again. We repeat this until no more subtours can be found.
+We inspect the result again, find the subtour $\texttt{[3,6,10,11]}$ and add it to our list of subtours. We pass these to the solver and solve again. We repeat this until no more subtours can be found.
 
 The tour can be seen in figure \ref{fig:plot3}, with the final subtour list being:
 
@@ -245,7 +245,7 @@ $$ y_{ij} \geq 0 \quad \forall ij \in E' $$
 \newpage
 \section*{Task 5}
 
-\textbf{Do we get the expected answer?}
+The implementation of SEP:
 
 \begin{lstlisting}
 def solve_separation(points, x_star, k):
@@ -303,14 +303,13 @@ def solve_separation(points, x_star, k):
         exit(0)
 \end{lstlisting}
 
-When running the $\texttt{solve\_separation}$ with a k value between 1 and the amount of cities, then if the resulting objective value is above 0, that means that city k is in a subtour.
+When running the $\texttt{solve\_separation}$ with a k value between 1 and the amount of cities, then if the resulting objective value is above 0, that means that city k is in a subtour. We observe this fact when solving SEP on our random points.
 
 
 \newpage
 \section*{Task 6}
 
-
-If we run our random seed with continuous variables, we find a solution. If we run the dantzig42 with continuous variables, we do not get a solution, but if we use integer variables, we get a solution. 
+If we run our random seed with continuous variables, we find a solution after three iterations as seen in \ref{fig:plot4}. 
 
 \begin{lstlisting}
 def cutting_plane_alg(points):
@@ -327,7 +326,7 @@ def cutting_plane_alg(points):
             value, subtour = solve_separation(points,lpsol,k)
             best_val = value if value > best_val else best_val
             ######### BEGIN: write here the condition. Include a tollerance
-            if value > 0.49: 
+            if value > 0.01: 
             ######### END
                 found = True
                 tmp_subtours += [subtour]
@@ -336,23 +335,21 @@ def cutting_plane_alg(points):
         print "********** Subtours found: ",tmp_subtours," with best value : ",best_val
         print '*'*60
     plot_situation(points, lpsol)
-    
-cutting_plane_alg(dantzig42)
 \end{lstlisting}
 
-\textbf{Mangler at indsætte plot af sidste løsning, samt hvor mange iterationer det tog.}
+The solution seems optimal, as the tour is complete.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.7]{task33.png}
-\caption{The resulting tour after doing three iterations.}
+\caption{$TSPLP_3$}
 \label{fig:plot4}
 \end{figure}
 
 \newpage
 \section*{Task 9}
  
-As seen in the figures throughout the report, our tour length is 2652.2 units.
+As seen in figure \ref{fig:plot4}, our tour length is 2652.2 units.
 
 \end{document}
           
